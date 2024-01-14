@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.135.128/JingXin?serverTimezone=Asia/Shanghai&useUnicode=utf8&useSSL=false
+    username: root
+    password: Zeng.010718
+
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+  #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      table-prefix: t_
+server:
+  port: 80
