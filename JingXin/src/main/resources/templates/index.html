@@ -6,11 +6,18 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
 </head>
 <body>
-<div>
-    欢迎
+<div th:replace="~{fgm::menu(0)}">
 </div>
+<div class="ui container">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h2>热烈庆祝京信集团十周年顺风顺水</h2>
+</div>
+<th:block th:replace="~{fgm::script}">
+</th:block>
 
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
 </body>
 </html>

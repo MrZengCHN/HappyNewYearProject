@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 /**
 * @author 11643
 * @description 针对表【award(奖品)】的数据库操作Mapper
-* @createDate 2024-01-15 01:12:03
+* @createDate 2024-01-15 19:22:36
 * @Entity com.example.jingxin.entity.Award
 */
 public interface AwardMapper extends BaseMapper<Award> {

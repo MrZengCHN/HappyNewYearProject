@@ -2,6 +2,7 @@ package com.example.jingxin.controller;
 
 import com.example.jingxin.entity.User;
 import com.example.jingxin.service.UserService;
+import com.example.jingxin.utils.Result;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
@@ -20,11 +21,22 @@ public class LoginController {
     public String Login() {
         return "login";
     }
+
     @ResponseBody
     @PostMapping("/login")
-    public Map<String,Object> Login(User user, HttpSession session){
-        Map<String,Object> map = userService.login(user);
-        System.out.println(user.getUsername());
-        return null;
+    public Map<String, Object> Login(User user, HttpSession session) {
+        Map<String, Object> map = userService.login(user);
+        if ((int) map.get("code") == 200) {
+            session.setAttribute("user", user);
+        }
+        return map;
+    }
+
+    @ResponseBody
+    @PostMapping("/logout")
+    public Map<String, Object> Logout(HttpSession session) {
+        System.out.println("用户退出登录");
+        session.removeAttribute("user");
+        return Result.code(200);
     }
 }

@@ -30,6 +30,11 @@ public class Award implements Serializable {
      */
     private Integer amount;
 
+    /**
+     * 已发放数量
+     */
+    private Integer issued;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
@@ -47,7 +52,8 @@ public class Award implements Serializable {
         Award other = (Award) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
             && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
-            && (this.getAmount() == null ? other.getAmount() == null : this.getAmount().equals(other.getAmount()));
+            && (this.getAmount() == null ? other.getAmount() == null : this.getAmount().equals(other.getAmount()))
+            && (this.getIssued() == null ? other.getIssued() == null : this.getIssued().equals(other.getIssued()));
     }
 
     @Override
@@ -57,6 +63,7 @@ public class Award implements Serializable {
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
         result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
         result = prime * result + ((getAmount() == null) ? 0 : getAmount().hashCode());
+        result = prime * result + ((getIssued() == null) ? 0 : getIssued().hashCode());
         return result;
     }
 
@@ -69,6 +76,7 @@ public class Award implements Serializable {
         sb.append(", id=").append(id);
         sb.append(", name=").append(name);
         sb.append(", amount=").append(amount);
+        sb.append(", issued=").append(issued);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

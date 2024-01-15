@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ch" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>奖品管理</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
+</head>
+<body>
+<div th:replace="~{fgm::menu(1)}">
+</div>
+<!--body-->
+<div class="ui container" style="margin-top: 30px">
+    <table class="ui center aligned celled padded table">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>奖品名称</th>
+            <th>奖品数量</th>
+            <th>已发放数量</th>
+            <th>操作</th>
+        </tr>
+
+        </thead>
+        <tbody>
+        <tr th:each="award,iterStat:${awards}">
+            <td th:text="${iterStat.count}">1</td>
+            <td th:text="${award.name}">小刀电动车</td>
+            <td th:text="${award.amount}">20</td>
+            <td th:text="${award.issued}">10</td>
+            <td>
+                <button class="ui teal small button">增加</button>
+                <button class="ui red small button">删除</button>
+                <button class="ui orange small button">修改</button>
+            </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <th class="ui right aligned" colspan="5">
+                <button class="ui teal button" id="addAward">添加奖品</button>
+            </th>
+        </tr>
+
+        </tfoot>
+    </table>
+</div>
+
+
+<!--body-->
+<!--弹窗-->
+<div class="ui modal" id="addAwardModal">
+    <div class="header">
+        增加奖品
+    </div>
+    <form class="ui form" id="addAwardForm">
+        <div class="ui segment">
+            <div class="field">
+                <input type="text" name="name" class="ui input" placeholder="奖品名称">
+            </div>
+            <div class="field">
+                <input type="number" name="amount" min="0" class="ui input" placeholder="奖品数量">
+            </div>
+        </div>
+    </form>
+    <div class="ui right aligned segment actions">
+        <button class="ui positive right labeled icon button" id="addAwardBtn">
+            确认
+            <i class="checkmark icon"></i>
+        </button>
+    </div>
+
+</div>
+<th:block th:replace="~{fgm::script}">
+</th:block>
+<script th:src="@{/js/item1.js}"></script>
+</body>
+</html>

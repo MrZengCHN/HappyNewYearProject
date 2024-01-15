@@ -9,7 +9,6 @@ import com.example.jingxin.utils.Result;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,13 +28,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(User::getUsername, user.getUsername());
         List<User> users = userMapper.selectList(wrapper);
-        if (users.size()<1){
+        if (users.size() < 1) {
             return Result.code(203);
-        }else if (users.size()>1){
+        } else if (users.size() > 1) {
             return Result.code(204);
         }
-
-        return null;
+        if (users.get(0).getPassword().equals(user.getPassword())) {
+            return Result.code(200);
+        } else {
+            return Result.code(205);
+        }
     }
 }
 

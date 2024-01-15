@@ -6,13 +6,20 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
 </head>
 <body>
-<div class="ui inverted black attached fluid segment" th:fragment="menu(m,n,head)">
+<div class="ui inverted black attached fluid segment" th:fragment="menu(m)" >
     <div class="ui container">
-        <div class="ui stackable two column grid">
+        <div class="ui stackable three column grid">
             <div class="ui four wide column">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/ChunTei_Black_Fu_CNS11643_Kai.svg/1200px-ChunTei_Black_Fu_CNS11643_Kai.svg.png" alt="" class="ui mini avatar image">
+                <div class="ui two column grid">
+                    <div class="ui column">
+                        <a th:href="@{/index}" class="ui header" style="color: #DADADA;font-size: 26px">管理系统</a>
+                    </div>
+                    <div class="ui column">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/ChunTei_Black_Fu_CNS11643_Kai.svg/1200px-ChunTei_Black_Fu_CNS11643_Kai.svg.png" alt="" class="ui mini avatar image">
+                    </div>
+                </div>
             </div>
-            <div class="ui eleven wide column">
+            <div class="ui nine wide column">
                 <div class="ui inverted red four item menu">
                     <a class="ui item" th:href="@{/item1}">奖品管理</a>
                     <a class="ui item" th:href="@{/item2}">中奖管理</a>
@@ -20,14 +27,33 @@
                     <a class="ui item" th:href="@{/item4}">菜单</a>
                 </div>
             </div>
+            <div class="ui right aligned two wide column">
+                <button class="ui button" id="logout">登出</button>
+            </div>
         </div>
 
     </div>
 </div>
 <th:block th:fragment="script">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
     <script th:src="@{/js/toast.js}"></script>
+    <script>
+        $('#logout').click(function (){
+            $.ajax({
+                url:"/logout",
+                type:"POST",
+                resultType:"JSON",
+                success:function (result){
+                    if (result.code===200){
+                        alert("退出登录")
+                        window.open("/login","_self")
+                    }
+                }
+            })
+        })
+    </script>
 </th:block>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
+
 </body>
 </html>
