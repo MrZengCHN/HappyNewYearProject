@@ -66,16 +66,15 @@
 <div class="ui middle aligned center aligned grid">
     <div class="column">
         <h2 class="ui red image header">
-            <div class="ui red message">
-                京信集团年会抽奖管理后台
-            </div>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/ChunTei_Black_Fu_CNS11643_Kai.svg/1200px-ChunTei_Black_Fu_CNS11643_Kai.svg.png" alt="" class="ui avatar image">
+            京信集团年会抽奖管理后台
         </h2>
-        <form class="ui large form">
+        <form class="ui large form" id="loginForm">
             <div class="ui stacked segment">
                 <div class="field">
                     <div class="ui left icon input">
                         <i class="user icon"></i>
-                        <input type="text" name="email" placeholder="用户名">
+                        <input type="text" name="username" placeholder="用户名">
                     </div>
                 </div>
                 <div class="field">
@@ -84,7 +83,7 @@
                         <input type="password" name="password" placeholder="密码">
                     </div>
                 </div>
-                <div class="ui fluid large red submit button">Login</div>
+                <div class="ui fluid large red submit button" id="loginBtn">登录</div>
             </div>
 
             <div class="ui error message"></div>
@@ -92,9 +91,50 @@
         </form>
     </div>
 </div>
+<th:block th:replace="~{fgm::script}">
 
-
+</th:block>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
+<script>
+    $('#loginBtn').click(function () {
+        $('#loginForm').form('validate form')
+    })
+    $('#loginForm').form({
+        fields: {
+            username: {
+                identifier: 'username',
+                rules: [{
+                    type: 'empty',
+                    prompt: '用户名不能为空'
+                }]
+            },
+            password: {
+                identifier: 'password',
+                rules: [{
+                    type: 'empty',
+                    prompt: '密码不能为空'
+                }]
+            }
+        },
+        onSuccess: function () {
+            $.ajax({
+                url:"/login",
+                type:'POST',
+                data: $('#loginForm').serialize(),
+                resultType:"JSON",
+                success:(result)=>{
+                    if (result.code===200){
+                        toast("success","登录成功")
+                        window.open("/index","_self")
+                    }else {
+                        toast("error",result.message)
+                    }
+                }
+            })
+        }
+    })
+
+</script>
 </body>
 </html>

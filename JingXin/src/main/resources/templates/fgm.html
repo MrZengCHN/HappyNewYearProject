@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ch" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>模板页面</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
+</head>
+<body>
+<div class="ui inverted black attached fluid segment" th:fragment="menu(m,n,head)">
+    <div class="ui container">
+        <div class="ui stackable two column grid">
+            <div class="ui four wide column">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/ChunTei_Black_Fu_CNS11643_Kai.svg/1200px-ChunTei_Black_Fu_CNS11643_Kai.svg.png" alt="" class="ui mini avatar image">
+            </div>
+            <div class="ui eleven wide column">
+                <div class="ui inverted red four item menu">
+                    <a class="ui item" th:href="@{/item1}">奖品管理</a>
+                    <a class="ui item" th:href="@{/item2}">中奖管理</a>
+                    <a class="ui item" th:href="@{/item3}">公司员工</a>
+                    <a class="ui item" th:href="@{/item4}">菜单</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<th:block th:fragment="script">
+    <script th:src="@{/js/toast.js}"></script>
+</th:block>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
+</body>
+</html>
